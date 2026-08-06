@@ -8,7 +8,7 @@ on:
     #  - src/**
 
 jobs:
-  docker:
+  ci:
     runs-on: ubuntu-latest
     steps:
       -
@@ -28,3 +28,18 @@ jobs:
         with:
           push: true
           tags: davismatrix/dmatrix-python-app:${{ env.COMMIT_ID }}
+
+  cd:
+    runs-on: [self-hosted]
+    needs: ci
+    steps:
+      -
+        name: ArgoCD Deployment
+        shell: bash
+        run: |
+          argocd login argocd-server.argocd \
+            --username admin \ 
+            --password ${{ secrets.ARGOCD_PASSWORD }} \ 
+            --insecure \
+            --grpc-web
+          argocd app sync dmatrix-python-app
