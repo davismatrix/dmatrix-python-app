@@ -123,7 +123,8 @@ def details():
 def health():
     return jsonify({
         "status": "healthy",
-        "Host": socket.gethostname()
+        "Host": socket.gethostname(),
+        "message": "The application is running smoothly and is ready to handle requests."
     })
 
 if __name__ == '__main__':
