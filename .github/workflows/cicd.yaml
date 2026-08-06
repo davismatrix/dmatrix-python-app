@@ -38,8 +38,8 @@ jobs:
         shell: bash
         run: |
           argocd login argocd-server.argocd \
-            --username admin \ 
-            --password ${{ secrets.ARGOCD_PASSWORD }} \ 
+            --username admin \
+            --password ${{ secrets.ARGOCD_PASSWORD }} \
             --insecure \
             --grpc-web
           argocd app sync dmatrix-python-app
