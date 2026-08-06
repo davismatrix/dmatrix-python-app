@@ -1,0 +1,6 @@
+ingress-controller
+
+t4s/
+instance/
+.DS_Store
+charts/argocd/values.yaml
