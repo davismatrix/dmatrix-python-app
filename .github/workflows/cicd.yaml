@@ -28,11 +28,18 @@ jobs:
         with:
           push: true
           tags: davismatrix/dmatrix-python-app:${{ env.COMMIT_ID }}
+    outputs:
+      commit_id: ${{ env.COMMIT_ID }}
 
   cd:
     runs-on: [self-hosted]
     needs: ci
     steps:
+      -
+        name: values.yaml update
+        shell: bash
+        run: |
+          sed -i "s/tag: .*/tag: ${{ needs.ci.outputs.commit_id }}/" charts/dmatrix-python-app/values.yaml
       -
         name: install argocd cli
         shell: bash
