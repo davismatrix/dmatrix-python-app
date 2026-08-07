@@ -48,13 +48,9 @@ jobs:
           sed -i -E 's/^(  tag:).*/\1 ${{ needs.ci.outputs.commit_id }}/' charts/dmatrix-python-app/values.yaml
       -
         name: Commit values change
-        shell: bash
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add charts/dmatrix-python-app/values.yaml
-          git commit -m "Update Helm image tag to ${{ needs.ci.outputs.commit_id }}" || true
-          git push
+        uses: Endbug/add-and-commit@v9
+        with:
+          message: "Update values.yaml with new image tag: ${{ needs.ci.outputs.commit_id }}"
       -
         name: install argocd cli
         shell: bash
