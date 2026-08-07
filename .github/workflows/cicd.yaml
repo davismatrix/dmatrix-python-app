@@ -7,6 +7,9 @@ on:
     #paths:
     #  - src/**
 
+permissions:
+  contents: write
+
 jobs:
   ci:
     runs-on: ubuntu-latest
@@ -42,7 +45,16 @@ jobs:
         name: values.yaml update
         shell: bash
         run: |
-          sed -i "s/tag: .*/tag: ${{ needs.ci.outputs.commit_id }}/" charts/dmatrix-python-app/values.yaml
+          sed -i -E 's/^(  tag:).*/\1 ${{ needs.ci.outputs.commit_id }}/' charts/dmatrix-python-app/values.yaml
+      -
+        name: Commit values change
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add charts/dmatrix-python-app/values.yaml
+          git commit -m "Update Helm image tag to ${{ needs.ci.outputs.commit_id }}" || true
+          git push
       -
         name: install argocd cli
         shell: bash
