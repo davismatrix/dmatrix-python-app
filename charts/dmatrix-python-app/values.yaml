@@ -8,7 +8,7 @@ image:
   repository: davismatrix/dmatrix-python-app
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 6fd4ec
+  tag: cedb04
 
 imagePullSecrets: []
 nameOverride: ""
