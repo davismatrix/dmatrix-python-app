@@ -1,0 +1,12 @@
+site_name: 'Dmatrix Python App'
+site_description: 'Main documentation for Dmatrix Python App'
+repo_url: https://github.com/davismatrix/dmatrix-python-app
+edit_uri: edit/master/docs
+
+plugins:
+  - techdocs-core
+
+# For sidebar navigation on https://backstage.io/, see `microsite/sidebars.js`
+nav:
+  - Overview:
+      - About APP: 'docs/index.md'
