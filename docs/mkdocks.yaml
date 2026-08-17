@@ -1,7 +1,7 @@
 site_name: 'Dmatrix Python App'
 site_description: 'Main documentation for Dmatrix Python App'
 repo_url: https://github.com/davismatrix/dmatrix-python-app
-edit_uri: edit/master/docs
+edit_uri: edit/main/docs
 
 plugins:
   - techdocs-core
